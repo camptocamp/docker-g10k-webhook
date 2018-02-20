@@ -36,4 +36,9 @@ COPY /docker-entrypoint.d/* /docker-entrypoint.d/
 
 RUN chmod g=u /etc/passwd
 
+RUN mkdir -p /.ssh \
+  && chgrp 0 /.ssh \
+  && chmod g=u /.ssh \
+  && echo StrictHostKeyChecking no > /.ssh/config
+
 ENTRYPOINT ["/docker-entrypoint.sh"]

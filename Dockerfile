@@ -41,4 +41,6 @@ RUN mkdir -p /.ssh \
   && chmod g=u /.ssh \
   && echo StrictHostKeyChecking no > /.ssh/config
 
+RUN touch /.netrc && chgrp 0 /.netrc && chmod g=u /.netrc
+
 ENTRYPOINT ["/docker-entrypoint.sh"]

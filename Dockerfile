@@ -30,5 +30,6 @@ COPY --from=builder /go/src/github.com/adnanh/webhook/webhook \
 
 VOLUME ["/etc/puppetlabs/code"]
 
+COPY push-to-g10k.sh /push-to-g10k.sh
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]

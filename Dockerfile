@@ -27,3 +27,5 @@ COPY --from=builder /go/src/github.com/xorpaul/g10k/g10k \
                     /usr/local/bin/g10k
 COPY --from=builder /go/src/github.com/adnanh/webhook/webhook \
                     /usr/local/bin/webhook
+
+VOLUME ["/etc/puppetlabs/code"]

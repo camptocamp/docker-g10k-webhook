@@ -32,4 +32,8 @@ VOLUME ["/etc/puppetlabs/code"]
 
 COPY push-to-g10k.sh /push-to-g10k.sh
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+COPY /docker-entrypoint.d/* /docker-entrypoint.d/
+
+RUN chmod g=u /etc/passwd
+
 ENTRYPOINT ["/docker-entrypoint.sh"]

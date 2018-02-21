@@ -36,11 +36,11 @@ COPY /docker-entrypoint.d/* /docker-entrypoint.d/
 
 RUN chmod g=u /etc/passwd
 
-RUN mkdir -p /.ssh \
-  && chgrp 0 /.ssh \
-  && chmod g=u /.ssh \
-  && echo StrictHostKeyChecking no > /.ssh/config
+RUN mkdir -p /root/.ssh \
+  && chgrp 0 /root/.ssh \
+  && chmod g=u /root/.ssh \
+  && echo StrictHostKeyChecking no > /root/.ssh/config
 
-RUN touch /.netrc && chgrp 0 /.netrc && chmod g=u /.netrc
+RUN touch /root/.netrc && chgrp 0 /root/.netrc && chmod g=u /root/.netrc
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

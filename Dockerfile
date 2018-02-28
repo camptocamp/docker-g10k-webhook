@@ -1,12 +1,12 @@
 FROM golang:1.10 as builder
 
 ENV \
-    G10K_VERSION=v0.4.4 \
     WEBHOOK_VERSION=2.6.8
 
 RUN go get -u github.com/xorpaul/g10k
 RUN cd /go/src/github.com/xorpaul/g10k \
-    && git checkout $G10K_VERSION \
+	&& git fetch origin pull/94/head:fix_targetDir \
+    && git checkout fix_targetDir \
     && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo \
 	  -o g10k .
 

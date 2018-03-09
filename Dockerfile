@@ -34,6 +34,8 @@ RUN mkdir -p /root/.ssh \
   && chmod g=u /root/.ssh \
   && echo StrictHostKeyChecking no > /root/.ssh/config
 
+COPY g10k.json /etc/webhook/g10k.json
+
 RUN touch /root/.netrc && chgrp 0 /root/.netrc && chmod g=u /root/.netrc
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

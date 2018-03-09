@@ -1,7 +1,7 @@
 FROM golang:1.10 as builder
 
 ENV \
-    G10K_VERSION=v0.4.4 \
+    G10K_VERSION=v0.4.5 \
     WEBHOOK_VERSION=2.6.8
 
 RUN go get -u github.com/xorpaul/g10k

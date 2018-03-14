@@ -8,6 +8,10 @@
       {
         "source": "payload",
         "name": "ref"
+      },
+      {
+        "source": "payload",
+        "name": "repository.ssh_url"
       }
     ],
     "trigger-rule":

@@ -23,7 +23,6 @@ RUN curl -L https://github.com/adnanh/webhook/releases/download/${WEBHOOK_VERSIO
 
 COPY push-to-g10k.sh /push-to-g10k.sh
 COPY docker-entrypoint.sh /docker-entrypoint.sh
-COPY /docker-entrypoint.d/* /docker-entrypoint.d/
 
 RUN echo StrictHostKeyChecking no >> /etc/ssh/ssh_config
 

@@ -23,4 +23,3 @@ You should set the following secrets:
 You should mount the following volumes:
 
   - `/etc/puppetlabs/code`: recipient destination of checked out code
-  - `/etc/puppetlabs/r10k/r10k.yaml` (optional): if present, used to initialize

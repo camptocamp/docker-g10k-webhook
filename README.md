@@ -16,3 +16,11 @@ The following environment variables are supported:
 You should set the following secrets:
 
   - `id_rsa`: the SSH private key for git checkouts
+
+
+## Volumes
+
+You should mount the following volumes:
+
+  - `/etc/puppetlabs/code`: recipient destination of checked out code
+  - `/etc/puppetlabs/r10k/r10k.yaml` (optional): if present, used to initialize

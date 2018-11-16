@@ -4,8 +4,8 @@ REF="$1"
 REMOTE="$2"
 : ${SSH_PRIVKEY:=/run/secrets/id_rsa}
 
-mkdir -p /etc/puppetlabs/r10k
-cat << EOF > /etc/puppetlabs/r10k/r10k.yaml
+r10kconf="$(mktemp)"
+cat << EOF > $r10kconf
 # The location to use for storing cached Git repos
 :cachedir: '/etc/puppetlabs/code/cache'
 
@@ -21,7 +21,8 @@ export PATH=/opt/puppetlabs/bin:$PATH
 
 if [[ $REF =~ 'refs/heads/' ]]; then
   branch=$(cut -d/ -f3 <<<"${REF}")
-  /nss_wrapper.sh g10k -config /etc/puppetlabs/r10k/r10k.yaml -branch "$branch"
+  /nss_wrapper.sh g10k -config "$r10kconf" -branch "$branch"
+  rm -f "$r10kconf"
 else
   echo "g10k skipping $REF"
 fi

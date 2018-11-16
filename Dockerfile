@@ -33,5 +33,12 @@ COPY g10k.yaml.tmpl /etc/webhook/g10k.yaml.tmpl
 
 RUN touch /root/.netrc && chgrp 0 /root/.netrc && chmod g=u /root/.netrc
 
+# install nss_wrapper in case we need to fake /etc/passwd and /etc/group (i.e. for OpenShift)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libnss-wrapper && \
+	rm -rf /var/lib/apt/lists/*
+
+COPY nss_wrapper.sh /
+
 ENTRYPOINT ["/docker-entrypoint.sh", "/usr/local/bin/webhook"]
 CMD ["-hooks", "/etc/webhook/g10k.yaml.tmpl", "-template", "-verbose"]

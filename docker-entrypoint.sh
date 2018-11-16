@@ -7,4 +7,4 @@ then
   /bin/run-parts --verbose --regex '\.(sh|rb)$' "$DIR"
 fi
 
-exec "$@"
+exec /nss_wrapper.sh "$@"

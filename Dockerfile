@@ -1,8 +1,8 @@
 FROM debian:stretch
 
 ENV \
-    G10K_VERSION=0.5.1 \
-    WEBHOOK_VERSION=2.6.8
+    G10K_VERSION=0.5.6 \
+    WEBHOOK_VERSION=2.6.9
 
 EXPOSE 9000
 

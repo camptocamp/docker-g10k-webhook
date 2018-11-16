@@ -10,8 +10,6 @@ RUN apt-get update \
     && apt-get install -y git ca-certificates curl unzip \
     && rm -rf /var/lib/apt/lists/*
 
-VOLUME ["/etc/puppetlabs/code"]
-
 RUN curl -L https://github.com/xorpaul/g10k/releases/download/v${G10K_VERSION}/g10k-linux-amd64.zip -o g10k-linux-amd64.zip \
     && unzip g10k-linux-amd64.zip \
 	&& mv g10k /usr/local/bin \
@@ -40,6 +38,10 @@ RUN apt-get update && \
 
 COPY nss_wrapper.sh /
 
+RUN mkdir -p /etc/puppetlabs/code/environments && \
+    chgrp 0 -R /etc/puppetlabs/code && \
+	chmod g=u -R /etc/puppetlabs/code
+VOLUME ["/etc/puppetlabs/code"]
 
 RUN useradd -d / -G0 webhook
 USER webhook

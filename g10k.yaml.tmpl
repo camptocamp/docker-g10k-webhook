@@ -1,0 +1,34 @@
+- id: g10k
+  execute-command: /push-to-g10k.sh
+  command-working-directory: /
+  pass-arguments-to-command:
+  - source: payload
+    name: ref
+  - source: payload
+    name: repository.git_ssh_url
+  trigger-rule:
+    or:
+      - match:
+          type: payload-hash-sha1
+          secret: "{{ getenv "HOOK_SECRET" | js }}"
+          parameter:
+            source: header
+            name: X-Hub-Signature
+      - match:
+          type: payload-hash-sha256
+          secret: "{{ getenv "HOOK_SECRET" | js }}"
+          parameter:
+            source: header
+            name: X-Gogs-Signature
+      - match:
+          type: value
+          value: "{{ getenv "HOOK_SECRET" | js }}"
+          parameter:
+            source: header
+            name: X-Gitlab-Signature
+      - match:
+          type: value
+          value: "{{ getenv "HOOK_SECRET" | js }}"
+          parameter:
+            source: payload
+            name: secret

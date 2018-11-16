@@ -29,8 +29,9 @@ COPY /docker-entrypoint.d/* /docker-entrypoint.d/
 
 RUN echo StrictHostKeyChecking no >> /etc/ssh/ssh_config
 
-COPY g10k.json /etc/webhook/g10k.json
+COPY g10k.yaml.tmpl /etc/webhook/g10k.yaml.tmpl
 
 RUN touch /root/.netrc && chgrp 0 /root/.netrc && chmod g=u /root/.netrc
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh", "/usr/local/bin/webhook"]
+CMD ["-hooks", "/etc/webhook/g10k.yaml.tmpl", "-template", "-verbose"]

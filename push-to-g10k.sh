@@ -2,6 +2,7 @@
 
 REF="$1"
 REMOTE="$2"
+: ${SSH_PRIVKEY:=/run/secrets/id_rsa}
 
 mkdir -p /etc/puppetlabs/r10k
 cat << EOF > /etc/puppetlabs/r10k/r10k.yaml
@@ -12,6 +13,7 @@ cat << EOF > /etc/puppetlabs/r10k/r10k.yaml
 :sources:
   :main:
     remote: '${REMOTE}'
+    private_key: '${SSH_PRIVKEY}'
     basedir: '/etc/puppetlabs/code/environments'
 EOF
 

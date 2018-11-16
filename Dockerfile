@@ -40,5 +40,10 @@ RUN apt-get update && \
 
 COPY nss_wrapper.sh /
 
+
+RUN useradd -d / -G0 webhook
+USER webhook
+
+
 ENTRYPOINT ["/docker-entrypoint.sh", "/usr/local/bin/webhook"]
 CMD ["-hooks", "/etc/webhook/g10k.yaml.tmpl", "-template", "-verbose"]

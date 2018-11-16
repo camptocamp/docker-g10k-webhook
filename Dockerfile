@@ -27,12 +27,7 @@ COPY push-to-g10k.sh /push-to-g10k.sh
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 COPY /docker-entrypoint.d/* /docker-entrypoint.d/
 
-RUN chmod g=u /etc/passwd
-
-RUN mkdir -p /root/.ssh \
-  && chgrp 0 /root/.ssh \
-  && chmod g=u /root/.ssh \
-  && echo StrictHostKeyChecking no > /root/.ssh/config
+RUN echo StrictHostKeyChecking no >> /etc/ssh/ssh_config
 
 COPY g10k.json /etc/webhook/g10k.json
 

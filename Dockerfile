@@ -29,8 +29,6 @@ RUN echo StrictHostKeyChecking no >> /etc/ssh/ssh_config
 
 COPY g10k.yaml.tmpl /etc/webhook/g10k.yaml.tmpl
 
-RUN touch /root/.netrc && chgrp 0 /root/.netrc && chmod g=u /root/.netrc
-
 # install nss_wrapper in case we need to fake /etc/passwd and /etc/group (i.e. for OpenShift)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends libnss-wrapper && \

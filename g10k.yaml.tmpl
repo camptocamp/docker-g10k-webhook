@@ -47,7 +47,7 @@
           value: "{{ getenv "HOOK_SECRET" | js }}"
           parameter:
             source: header
-            name: X-Gitlab-Signature
+            name: X-Gitlab-Token
 
 - id: payload
   execute-command: /push-to-g10k.sh

@@ -7,5 +7,5 @@ then
   /bin/run-parts --verbose --regex '\.(sh|rb)$' "$DIR"
 fi
 
-umask 0022
+umask 0002
 exec /nss_wrapper.sh "$@"

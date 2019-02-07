@@ -2,7 +2,8 @@ FROM debian:stretch
 
 ENV \
     G10K_VERSION=0.5.6 \
-    WEBHOOK_VERSION=2.6.9
+    WEBHOOK_VERSION=2.6.9 \
+	HOME=/home/g10k
 
 EXPOSE 9000
 
@@ -40,9 +41,10 @@ RUN mkdir -p /etc/puppetlabs/code/environments && \
 	chmod g=u -R /etc/puppetlabs/code
 VOLUME ["/etc/puppetlabs/code"]
 
-RUN useradd -d / -G0 webhook
-USER webhook
-
+RUN mkdir -p ${HOME} && \
+	chgrp 0 -R ${HOME} && \
+	chmod g=u -R ${HOME}
+USER 1000
 
 ENTRYPOINT ["/docker-entrypoint.sh", "/usr/local/bin/webhook"]
 CMD ["-hooks", "/etc/webhook/g10k.yaml.tmpl", "-template", "-verbose"]

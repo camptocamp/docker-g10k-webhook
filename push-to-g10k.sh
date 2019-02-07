@@ -2,7 +2,7 @@
 
 REF="$1"
 REMOTE="$2"
-: ${SSH_PRIVKEY:=/run/secrets/id_rsa}
+# : ${SSH_PRIVKEY:=/run/secrets/id_rsa}
 
 r10kconf="$(mktemp)"
 cat << EOF > $r10kconf

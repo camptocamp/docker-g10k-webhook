@@ -35,6 +35,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 COPY nss_wrapper.sh /
+COPY /docker-entrypoint.d/* /docker-entrypoint.d/
 
 RUN mkdir -p /etc/puppetlabs/code/environments && \
     chgrp 0 -R /etc/puppetlabs/code && \

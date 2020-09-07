@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM camptocamp/g10k:0.8.12
 
 ENV \
     G10K_VERSION=0.8.12 \
@@ -11,11 +11,6 @@ RUN apt-get update \
     && apt-get install -y git ca-certificates curl unzip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -L https://github.com/xorpaul/g10k/releases/download/v${G10K_VERSION}/g10k-linux-amd64.zip -o g10k-linux-amd64.zip \
-    && unzip g10k-linux-amd64.zip \
-	&& mv g10k /usr/local/bin \
-	&& chmod +x /usr/local/bin/g10k \
-	&& rm g10k-linux-amd64.zip
 RUN curl -L https://github.com/adnanh/webhook/releases/download/${WEBHOOK_VERSION}/webhook-linux-amd64.tar.gz -o webhook-linux-amd64.tar.gz \
     && tar xzf webhook-linux-amd64.tar.gz \
 	&& mv webhook-linux-amd64/webhook /usr/local/bin \

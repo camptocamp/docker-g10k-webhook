@@ -3,8 +3,10 @@ set -e
 
 if test -n "${GITHUB_TOKEN}"; then
 
+if test -z "${GITHUB_USER}"; then
 # Retrieve GITHUB_USER from GITHUB_TOKEN
-: GITHUB_USER=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/user | sed -n '/ *"login": "\(.*\)",$/ s//\1/p')
+GITHUB_USER=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" https://api.github.com/user | sed -n '/ *"login": "\(.*\)",$/ s//\1/p')
+fi
 
 if test -n "${GITHUB_USER}" && test -n "${GITHUB_TOKEN}"; then
   cat << EOF > ~/.netrc

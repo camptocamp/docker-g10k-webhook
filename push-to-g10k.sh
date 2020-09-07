@@ -7,11 +7,15 @@ REMOTE="$2"
 r10kconf="$(mktemp)"
 cat << EOF > $r10kconf
 # The location to use for storing cached Git repos
-:cachedir: '/etc/puppetlabs/code/cache'
+cachedir: '/etc/puppetlabs/code/cache'
+
+deploy:
+  purge_levels: ['puppetfile', 'environment', 'deployment']
+  purge_whitelist: ['.resource_types', '.resource_types/*.pp']
 
 # A list of git repositories to create
-:sources:
-  :main:
+sources:
+  main:
     remote: '${REMOTE}'
     private_key: '${SSH_PRIVKEY}'
     basedir: '/etc/puppetlabs/code/environments'

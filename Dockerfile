@@ -2,7 +2,7 @@ FROM debian:stretch
 
 ENV \
     G10K_VERSION=0.8.12 \
-    WEBHOOK_VERSION=2.6.9 \
+    WEBHOOK_VERSION=2.7.0 \
 	HOME=/home/g10k
 
 EXPOSE 9000

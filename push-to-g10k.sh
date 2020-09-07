@@ -21,7 +21,8 @@ export PATH=/opt/puppetlabs/bin:$PATH
 
 if [[ $REF =~ 'refs/heads/' ]]; then
   branch=$(cut -d/ -f3 <<<"${REF}")
-  /nss_wrapper.sh g10k -config "$r10kconf" -branch "$branch"
+  #/nss_wrapper.sh g10k -config "$r10kconf" -branch "$branch" -verbose -debug
+  g10k -config "$r10kconf" -branch "$branch" -verbose -debug
   rm -f "$r10kconf"
 else
   echo "g10k skipping $REF"

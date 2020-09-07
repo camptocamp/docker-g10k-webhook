@@ -45,7 +45,7 @@ VOLUME ["/etc/puppetlabs/code"]
 RUN mkdir -p ${HOME} && \
 	chgrp 0 -R ${HOME} && \
 	chmod g=u -R ${HOME}
-USER 1000
+#USER 1000
 
 ENTRYPOINT ["/docker-entrypoint.sh", "/usr/local/bin/webhook"]
 CMD ["-hooks", "/etc/webhook/g10k.yaml.tmpl", "-template", "-verbose"]

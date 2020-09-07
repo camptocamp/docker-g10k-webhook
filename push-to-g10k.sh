@@ -23,6 +23,7 @@ if [[ $REF =~ 'refs/heads/' ]]; then
   branch=$(cut -d/ -f3 <<<"${REF}")
   #/nss_wrapper.sh g10k -config "$r10kconf" -branch "$branch" -verbose -debug
   g10k -config "$r10kconf" -branch "$branch" -verbose -debug
+	puppet generate types --environment "$branch"
   rm -f "$r10kconf"
 else
   echo "g10k skipping $REF"
